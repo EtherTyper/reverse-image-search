@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class ConvolutionTest {
     @Test
     public void gaussianFilter() {
-        double[] gaussian = ImageManipulation.gaussianFilter(10, 4.5);
+        double[] gaussian = ImageConvolutions.gaussianFilter(10, 4.5);
         double sum = Arrays.stream(gaussian).sum();
 
         Assert.assertTrue(sum >= 0.95);

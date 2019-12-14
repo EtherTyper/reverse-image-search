@@ -1,6 +1,6 @@
 package main;
 
-public class ImageManipulation {
+public class ImageConvolutions {
     static final double INV_SQRT_2_PI = 1.0 / Math.sqrt(2 * Math.PI);
     static final double DEFAULT_FACTOR = Math.sqrt(2);
 
