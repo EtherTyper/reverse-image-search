@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Index implements Serializable {
     long lastModified = System.currentTimeMillis();
-    HashMap<String, ImageData> dataFor;
+    HashMap<URI, ImageData> dataFor;
 
     public void addImage(URI location, BufferedImage image) {
         throw new UnsupportedOperationException();
@@ -15,7 +15,5 @@ public class Index implements Serializable {
 }
 
 class ImageData {
-    URI location;
-
     // Variable to store keypoints.
 }
