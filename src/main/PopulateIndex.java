@@ -37,7 +37,7 @@ public class PopulateIndex {
             // Check the image has been modified since the index was last updated.
             if (imageFile.lastModified() < index.lastModified) {
                 BufferedImage image = ImageIO.read(path.toFile());
-                index.addImage(image);
+                index.addImage(path.toUri(), image);
             }
         }
 
