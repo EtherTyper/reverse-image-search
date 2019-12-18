@@ -1,8 +1,6 @@
 package main;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.URI;
 import java.util.Collection;
@@ -13,18 +11,11 @@ public class Server {
 
     public Server() throws IOException, ClassNotFoundException {
         socket = new ServerSocket();
-        index = populateIndex();
+        index = PopulateIndex.loadIndex();
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         new Server();
-    }
-
-    public static Index populateIndex() throws IOException, ClassNotFoundException {
-        FileInputStream indexFileIn = new FileInputStream("index.db");
-        ObjectInputStream objIn = new ObjectInputStream(indexFileIn);
-
-        return (Index) objIn.readObject();
     }
 
     /**

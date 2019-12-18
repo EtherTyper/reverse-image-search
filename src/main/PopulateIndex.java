@@ -18,7 +18,7 @@ public class PopulateIndex {
         if (!shouldUpdate) {
             index = new Index();
         } else {
-            index = Server.populateIndex();
+            index = loadIndex();
         }
 
         // Enumerate files in 'images' directory.
@@ -45,5 +45,12 @@ public class PopulateIndex {
         ObjectOutputStream objOut = new ObjectOutputStream(indexFileOut);
 
         objOut.writeObject(index);
+    }
+
+    public static Index loadIndex() throws IOException, ClassNotFoundException {
+        FileInputStream indexFileIn = new FileInputStream("index.db");
+        ObjectInputStream objIn = new ObjectInputStream(indexFileIn);
+
+        return (Index) objIn.readObject();
     }
 }
