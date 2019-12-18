@@ -1,8 +1,11 @@
 package main;
 
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class Server {
@@ -10,8 +13,18 @@ public class Server {
     Index index;
 
     public Server() throws IOException, ClassNotFoundException {
-        socket = new ServerSocket();
+        socket = new ServerSocket(8001);
         index = PopulateIndex.loadIndex();
+
+        while (true) {
+            Socket request = socket.accept();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(request.getOutputStream()));
+
+            // Handle input, output.
+            System.out.println(reader.readLine());
+            writer.close();
+        }
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
