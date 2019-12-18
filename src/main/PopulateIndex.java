@@ -12,16 +12,13 @@ import java.util.stream.Collectors;
 public class PopulateIndex {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // Either load or create a new index.
-        boolean shouldUpdate = args.length >= 1 && args[0].equals("update");
+        boolean shouldUpdate = args.length >= 1 && args[0].equals("--update");
 
         Index index;
         if (!shouldUpdate) {
             index = new Index();
         } else {
-            FileInputStream indexFileIn = new FileInputStream("index.db");
-            ObjectInputStream objIn = new ObjectInputStream(indexFileIn);
-
-            index = (Index) objIn.readObject();
+            index = Server.populateIndex();
         }
 
         // Enumerate files in 'images' directory.

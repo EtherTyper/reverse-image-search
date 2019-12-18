@@ -13,18 +13,18 @@ public class Server {
 
     public Server() throws IOException, ClassNotFoundException {
         socket = new ServerSocket();
-        populateIndex();
+        index = populateIndex();
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         new Server();
     }
 
-    public void populateIndex() throws IOException, ClassNotFoundException {
+    public static Index populateIndex() throws IOException, ClassNotFoundException {
         FileInputStream indexFileIn = new FileInputStream("index.db");
         ObjectInputStream objIn = new ObjectInputStream(indexFileIn);
 
-        index = (Index) objIn.readObject();
+        return (Index) objIn.readObject();
     }
 
     /**
