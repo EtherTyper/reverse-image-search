@@ -27,7 +27,11 @@ public class Server {
         index = (Index) objIn.readObject();
     }
 
-    public void render(Collection<URI> results) {
+    /**
+     * @param results List of images that turned up matches.
+     * @return HTML formatted results.
+     */
+    public String render(Collection<URI> results) {
         StringBuilder output = new StringBuilder();
 
         // Render page.
@@ -36,6 +40,8 @@ public class Server {
             renderImageResult(output, location, index.dataFor.get(location));
         }
         renderFooter(output);
+
+        return output.toString();
     }
 
     public void renderHeader(StringBuilder output) {
